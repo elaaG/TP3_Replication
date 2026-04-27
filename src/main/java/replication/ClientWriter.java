@@ -9,7 +9,6 @@ public class ClientWriter {
 
         if (args.length < 1) {
             System.err.println("Usage: ClientWriter \"<lineNumber> <text>\"");
-            System.err.println("Example: ClientWriter \"1 Texte message1\"");
             System.exit(1);
         }
 

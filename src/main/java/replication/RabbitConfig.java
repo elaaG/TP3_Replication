@@ -8,7 +8,6 @@ public class RabbitConfig {
 
     public static final String HOST = "localhost";
 
-   
     public static final String WRITE_EXCHANGE = "write_exchange";
     public static final String READ_EXCHANGE  = "read_exchange";
     public static final String REPLY_EXCHANGE = "reply_exchange";

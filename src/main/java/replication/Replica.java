@@ -24,7 +24,7 @@ public class Replica {
 
     public static void main(String[] args) throws Exception {
         if (args.length < 1) {
-            System.err.println("Usage: Replica <id>    e.g.  Replica 1");
+            System.err.println("Usage: Replica <id> ");
             System.exit(1);
         }
         int id = Integer.parseInt(args[0]);
@@ -42,7 +42,7 @@ public class Replica {
 
         System.out.println("[Replica " + replicaId + "] Ready.");
         System.out.println("[Replica " + replicaId + "] Data file : " + dataFile.toAbsolutePath());
-        System.out.println("[Replica " + replicaId + "] Waiting for messages... (CTRL+C to stop)");
+        System.out.println("[Replica " + replicaId + "] Waiting for messages...");
 
         Thread.currentThread().join();
     }

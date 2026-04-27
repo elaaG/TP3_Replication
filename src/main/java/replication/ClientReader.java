@@ -49,7 +49,7 @@ public class ClientReader {
             }
 
             if (sent == 0) {
-                System.out.println("[ClientReader] No replicas reachable. Is RabbitMQ running?");
+                System.out.println("[ClientReader] No replicas reachable ");
                 return;
             }
 
@@ -57,7 +57,7 @@ public class ClientReader {
             String reply = firstReply.poll(TIMEOUT_MS, TimeUnit.MILLISECONDS);
 
             if (reply == null) {
-                System.out.println("[ClientReader] TIMEOUT: no replica responded within " + TIMEOUT_MS + " ms.");
+                System.out.println("[ClientReader] TIMEOUT: no replica responded within " + TIMEOUT_MS + " ms");
             } else {
                 System.out.println("[ClientReader] Response received:");
                 System.out.println("  >> " + reply);

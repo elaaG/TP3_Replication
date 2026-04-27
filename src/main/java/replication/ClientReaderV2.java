@@ -30,12 +30,12 @@ public class ClientReaderV2 {
                     channel.queueDeclarePassive(RabbitConfig.READ_QUEUE_PREFIX + i);
                     liveIds.add(i);
                 } catch (Exception e) {
-                    System.out.println("[ClientReaderV2] Replica " + i + " not reachable (skipped).");
+                    System.out.println("[ClientReaderV2] Replica " + i + " not reachable ");
                 }
             }
 
             if (liveIds.isEmpty()) {
-                System.out.println("[ClientReaderV2] No replicas reachable. Exiting.");
+                System.out.println("[ClientReaderV2] No replicas reachable ");
                 return;
             }
 
@@ -54,7 +54,7 @@ public class ClientReaderV2 {
                 if (RabbitConfig.CMD_END_OF_FILE.equals(content)) {
                     if (finishedReplicas.add(id)) {   // count each replica once only
                         latch.countDown();
-                        System.out.println("[ClientReaderV2] Replica " + id + " finished streaming.");
+                        System.out.println("[ClientReaderV2] Replica " + id + " finished streaming ");
                     }
                 } else {
                     replicaLines.computeIfAbsent(id, k -> new CopyOnWriteArrayList<>()).add(content);
@@ -78,7 +78,7 @@ public class ClientReaderV2 {
 
             boolean allDone = latch.await(TIMEOUT_MS, TimeUnit.MILLISECONDS);
             if (!allDone) {
-                System.out.println("[ClientReaderV2] WARNING: timeout before all replicas finished.");
+                System.out.println("[ClientReaderV2] WARNING: timeout before all replicas finished ");
             }
 
             int majority = (liveIds.size() / 2) + 1;   
@@ -102,22 +102,17 @@ public class ClientReaderV2 {
 
             result.sort(Comparator.comparingInt(ClientReaderV2::lineNumber));
 
-            System.out.println("==========================================");
-            System.out.println("  CONSISTENT CONTENT  (majority vote)    ");
-            System.out.println("==========================================");
+            System.out.println("  CONSISTENT CONTENT     ");
             if (result.isEmpty()) {
-                System.out.println("  (no lines passed the majority threshold)");
+                System.out.println(" no lines passed the majority threshold ");
             } else {
                 for (String line : result) {
                     System.out.println("  " + line);
                 }
             }
-            System.out.println("==========================================");
-            System.out.println("  Total lines: " + result.size());
-            System.out.println("==========================================\n");
+            System.out.println("  Total lines : " + result.size());
 
-            // ── Show raw per-replica content for comparison ───────────────────
-            System.out.println("-- Raw content per replica --");
+            System.out.println("Raw content per replica n");
             for (int i = 1; i <= RabbitConfig.NUM_REPLICAS; i++) {
                 List<String> lines = replicaLines.getOrDefault(i, List.of());
                 if (lines.isEmpty()) {

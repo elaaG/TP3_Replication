@@ -334,7 +334,7 @@ public class DashboardServer {
   <button class="danger" onclick="doReset()">Reset</button>
 </div>
 
-<div class="warn" id="warn">⚠ Inconsistency detected — replicas have different content. Run Majority Vote to recover.</div>
+<div class="warn" id="warn"> Inconsistency detected — replicas have different content. Run Majority Vote to recover.</div>
 
 <div class="grid">
   <div class="card" id="card1">
@@ -389,10 +389,10 @@ public class DashboardServer {
 
       if (r.online) {
         label.textContent = 'ONLINE';
-        label.style.color = '#1a7f3c';
+        label.style.color = '#156d33';
       } else {
         label.textContent = 'OFFLINE';
-        label.style.color = '#c00';
+        label.style.color = 'rgb(137, 6, 6)';
       }
 
       if (r.lines.length === 0) { body.innerHTML = '<div class="empty">No data yet</div>'; }
