@@ -1,1 +1,5 @@
+*.class
 out/
+replica1/
+replica2/
+replica3/
